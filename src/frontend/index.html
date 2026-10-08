@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ExecuBot - WhatsApp AI Executive Assistant</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- القائمة الجانبية (Sidebar) -->
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M12 2a10 10 0 0 1 10 10c0 5.523-4.477 10-10 10a9.96 9.96 0 0 1-4.89-1.272L2 22l1.328-5.02A9.96 9.96 0 0 1 2 12C2 6.477 6.477 2 12 2z"></path>
+          <path d="M8 12h.01M12 12h.01M16 12h.01"></path>
+        </svg>
+      </div>
+      <div class="brand-text">
+        <h2 data-i18n="app_title">ExecuBot</h2>
+        <span data-i18n="app_subtitle">WhatsApp AI Executive Assistant</span>
+      </div>
+    </div>
+
+    <ul class="nav-links">
+      <li class="nav-item active" data-page="page-connect">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="5" y="2" width="14" height="20" rx="3"></rect>
+          <line x1="12" y1="18" x2="12" y2="18.01"></line>
+        </svg>
+        <span data-i18n="nav_connect">Connection & QR</span>
+      </li>
+
+      <li class="nav-item" data-page="page-groups">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+          <circle cx="9" cy="7" r="4"></circle>
+          <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+          <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+        </svg>
+        <span data-i18n="nav_groups">Group Monitor</span>
+      </li>
+
+      <li class="nav-item" data-page="page-contacts">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+          <circle cx="12" cy="7" r="4"></circle>
+        </svg>
+        <span data-i18n="nav_contacts">Executive Inquiries</span>
+      </li>
+
+      <li class="nav-item" data-page="page-reports">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="16" y1="13" x2="8" y2="13"></line>
+          <line x1="16" y1="17" x2="8" y2="17"></line>
+          <polyline points="10 9 9 9 8 9"></polyline>
+        </svg>
+        <span data-i18n="nav_reports">Daily Reports</span>
+      </li>
+
+      <li class="nav-item" data-page="page-chat">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+        </svg>
+        <span data-i18n="nav_chat">AI Assistant</span>
+      </li>
+
+      <li class="nav-item" data-page="page-settings">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="3"></circle>
+          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+        </svg>
+        <span data-i18n="nav_settings">Settings & AI Models</span>
+      </li>
+    </ul>
+
+    <!-- مؤشر الحالة وتبديل اللغة -->
+    <div style="display: flex; gap: 8px; margin-bottom: 8px;">
+      <button id="btnLangEn" class="fluent-btn" style="flex: 1; padding: 4px; font-size: 11px; justify-content: center;">English</button>
+      <button id="btnLangAr" class="fluent-btn" style="flex: 1; padding: 4px; font-size: 11px; justify-content: center;">العربية</button>
+    </div>
+
+    <div class="sidebar-status">
+      <div id="statusDot" class="status-dot disconnected"></div>
+      <span id="statusText">Checking connection...</span>
+    </div>
+  </aside>
+
+  <!-- مساحة العرض الرئيسية (Main View) -->
+  <main class="main-view">
+
+    <!-- 1. صفحة الاتصال و QR -->
+    <div id="page-connect" class="content-page active">
+      <div class="header">
+        <div class="header-title">
+          <h1>WhatsApp Linked Device</h1>
+          <p>Scan the QR code with WhatsApp on your phone to link ExecuBot.</p>
+        </div>
+        <div class="header-actions">
+          <button id="btnReconnect" class="fluent-btn" data-i18n="btn_reconnect">Reconnect</button>
+          <button id="btnLogout" class="fluent-btn danger" data-i18n="btn_logout">Log Out</button>
+        </div>
+      </div>
+
+      <div class="fluent-card" style="max-width: 520px; text-align: center; margin: 0 auto;">
+        <div id="qrLoading" style="display: none; padding: 30px;">
+          <p>Generating QR code... Please wait.</p>
+        </div>
+
+        <div id="qrWrapper" style="display: none; margin: 20px 0;">
+          <img id="qrImage" src="" alt="WhatsApp QR Code" style="width: 250px; height: 250px; border-radius: 8px; border: 4px solid #fff;">
+        </div>
+
+        <div id="connectedBadge" style="display: none; padding: 24px;">
+          <div style="font-size: 42px; margin-bottom: 12px;">✅</div>
+          <h2 style="color: #4ADE80; font-size: 18px; margin-bottom: 6px;">WhatsApp Connected & Active!</h2>
+          <p style="color: var(--text-secondary); font-size: 13px;">ExecuBot is actively screening incoming messages.</p>
+        </div>
+
+        <div style="color: var(--text-secondary); font-size: 12.5px; line-height: 1.6; text-align: left; margin-top: 15px; border-top: 1px solid var(--border-subtle); padding-top: 15px;">
+          <p><strong>How to connect:</strong> Open WhatsApp on your phone ➡️ Settings (or 3 dots) ➡️ Linked Devices ➡️ Link a Device ➡️ Point your camera at this QR code.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. صفحة إدارة الجروبات -->
+    <div id="page-groups" class="content-page">
+      <div class="header">
+        <div class="header-title">
+          <h1>Group Monitor & Management</h1>
+          <p>Select which groups to monitor, synthesize daily, or enable auto-replies for.</p>
+        </div>
+        <div class="header-actions">
+          <button id="btnSyncGroups" class="fluent-btn primary" data-i18n="btn_sync_groups">Sync Groups</button>
+        </div>
+      </div>
+
+      <div style="margin-bottom: 15px;">
+        <input type="text" id="groupSearchInput" class="fluent-input" placeholder="Search groups..." style="max-width: 360px;">
+      </div>
+
+      <div id="groupsGrid" class="groups-grid"></div>
+    </div>
+
+    <!-- 3. صفحة طلبات المتصلين ليحيى -->
+    <div id="page-contacts" class="content-page">
+      <div class="header">
+        <div class="header-title">
+          <h1>Executive Inquiries & Contact Screening</h1>
+          <p>ExecuBot screens 1-on-1 contact chats, extracts their request, and logs decision traces.</p>
+        </div>
+        <div class="header-actions" style="display: flex; align-items: center; gap: 12px;">
+          <button id="btnResetTakeovers" class="fluent-btn" style="font-size: 12px;" data-i18n="resume_takeover">
+            🔄 Resume Auto-Reply (Clear Pause)
+          </button>
+          <div style="display: flex; align-items: center; gap: 10px; background: rgba(255, 255, 255, 0.05); padding: 6px 14px; border-radius: var(--radius-md); border: 1px solid var(--border-subtle);">
+            <span style="font-size: 13px; font-weight: 600;" data-i18n="contacts_auto_reply">Private Auto-Reply:</span>
+            <label class="fluent-switch">
+              <input type="checkbox" id="toggleGlobalContactsReply" checked>
+              <span class="switch-slider"></span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h2 style="font-size: 15px; margin-bottom: 12px; color: #60A5FA;">📋 Screened Inquiries:</h2>
+        <div id="inquiriesList"></div>
+      </div>
+
+      <div style="margin-top: 30px;">
+        <h2 style="font-size: 15px; margin-bottom: 12px; color: var(--text-secondary);">👥 Contacts & Controls:</h2>
+        <div id="contactsGrid" class="groups-grid"></div>
+      </div>
+    </div>
+
+    <!-- 4. صفحة التقارير والملخصات -->
+    <div id="page-reports" class="content-page">
+      <div class="header">
+        <div class="header-title">
+          <h1>Daily Reports & Synthesis</h1>
+          <p>Structured executive summaries generated by NVIDIA Nemotron 3 Ultra 550B.</p>
+        </div>
+      </div>
+      <div id="reportsList" style="margin-top: 15px;"></div>
+    </div>
+
+    <!-- 5. صفحة المساعد الشخصي (Chat) -->
+    <div id="page-chat" class="content-page">
+      <div class="header">
+        <div class="header-title">
+          <h1>ExecuBot History Q&A</h1>
+          <p>Ask anything about what transpired in your monitored WhatsApp groups.</p>
+        </div>
+      </div>
+
+      <div class="chat-container">
+        <div id="chatMessages" class="chat-messages">
+          <div class="chat-bubble bot">
+            Hello! I am ExecuBot. Ask me anything about what was discussed or decided in your WhatsApp groups!
+          </div>
+        </div>
+
+        <div class="chat-input-bar">
+          <input type="text" id="chatInput" class="fluent-input" placeholder="Ask about your groups... e.g., What tasks were assigned today?">
+          <button id="btnSendChat" class="fluent-btn primary">Send</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. صفحة الإعدادات والموديلات -->
+    <div id="page-settings" class="content-page">
+      <div class="header">
+        <div class="header-title">
+          <h1>Settings & AI Model Orchestration</h1>
+          <p>Configure API keys, dynamic model IDs, voice personality, and your Knowledge Card.</p>
+        </div>
+      </div>
+
+      <div class="fluent-tabs">
+        <button class="tab-btn active" data-tab="tab-ai-engine" data-i18n="tab_ai_engine">⚡ AI Engine & API Keys</button>
+        <button class="tab-btn" data-tab="tab-profile" data-i18n="tab_profile">👤 Knowledge Card & Identity</button>
+        <button class="tab-btn" data-tab="tab-voice" data-i18n="tab_voice">🎙️ Voice Personality</button>
+      </div>
+
+      <!-- تبويب 1: مزودين الـ AI والمفاتيح -->
+      <div id="tab-ai-engine" class="tab-content" style="max-width: 680px;">
+        <!-- Gemini Card -->
+        <div class="fluent-card">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px;">
+            <h3 style="font-size: 15px; color: #60A5FA;">⚡ Google Gemini (Fast Perception & Audio STT)</h3>
+            <a href="https://aistudio.google.com/app/apikey" target="_blank" class="chip-btn" style="color: #60A5FA; text-decoration: none;">🔗 Get Free API Key</a>
+          </div>
+          <p style="font-size: 12.5px; color: var(--text-secondary); margin-bottom: 14px;">
+            Powers instant 1-on-1 contact chats, smart reactions, and multimodal voice note transcription. Free tier available with no credit card required.
+          </p>
+
+          <div style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 14px;">
+            <div>
+              <label style="font-size: 12px; color: var(--text-muted); display: block; margin-bottom: 4px;">Gemini API Key:</label>
+              <input type="password" id="inputGeminiKey" class="fluent-input" placeholder="AIzaSy...">
+            </div>
+            <div>
+              <label style="font-size: 12px; color: var(--text-muted); display: block; margin-bottom: 4px;">Gemini Model ID:</label>
+              <input type="text" id="inputGeminiModel" class="fluent-input" value="gemini-2.5-flash-lite" placeholder="gemini-2.5-flash-lite">
+            </div>
+          </div>
+        </div>
+
+        <!-- NVIDIA NIM Card -->
+        <div class="fluent-card">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px;">
+            <h3 style="font-size: 15px; color: #4ADE80;">🧠 NVIDIA NIM (Deep Reasoning & Synthesis)</h3>
+            <a href="https://build.nvidia.com/" target="_blank" class="chip-btn" style="color: #4ADE80; text-decoration: none;">🔗 Get Free 1,000 Credits</a>
+          </div>
+          <p style="font-size: 12.5px; color: var(--text-secondary); margin-bottom: 14px;">
+            Powers deep synthesis of noisy group chats and daily executive reports using high-parameter models.
+          </p>
+
+          <div style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 14px;">
+            <div>
+              <label style="font-size: 12px; color: var(--text-muted); display: block; margin-bottom: 4px;">NVIDIA NIM API Key:</label>
+              <input type="password" id="inputNvidiaKey" class="fluent-input" placeholder="nvapi-...">
+            </div>
+            <div>
+              <label style="font-size: 12px; color: var(--text-muted); display: block; margin-bottom: 4px;">NVIDIA Model ID:</label>
+              <input type="text" id="inputNvidiaModel" class="fluent-input" value="nvidia/nemotron-3-ultra-550b-a55b" placeholder="nvidia/nemotron-3-ultra-550b-a55b">
+            </div>
+          </div>
+        </div>
+
+        <button id="btnSaveKeys" class="fluent-btn primary" data-i18n="btn_save">Save Changes</button>
+      </div>
+
+      <!-- تبويب 2: بطاقة المعرفة الشخصية (Profile) -->
+      <div id="tab-profile" class="tab-content" style="display: none; max-width: 680px;">
+        <!-- ChatGPT Meta-Prompt Generator Card -->
+        <div class="fluent-card" style="background: rgba(0, 120, 212, 0.08); border-color: rgba(0, 120, 212, 0.25);">
+          <h3 style="font-size: 14.5px; color: #60A5FA; margin-bottom: 6px;">🤖 Generate Knowledge Card via ChatGPT / Claude</h3>
+          <p style="font-size: 12.5px; color: var(--text-secondary); margin-bottom: 12px;">
+            Don't want to type everything manually? Copy our structured interview prompt into ChatGPT or Claude, answer 4 quick questions, and paste the generated JSON block below!
+          </p>
+          <div style="display: flex; gap: 10px;">
+            <button id="btnCopyChatGPTPrompt" class="fluent-btn" style="background: var(--accent); color: white;">📋 Copy ChatGPT Prompt</button>
+            <button id="btnPasteProfileJSON" class="fluent-btn">📥 Import Profile JSON</button>
+          </div>
+        </div>
+
+        <div class="fluent-card">
+          <h3 style="font-size: 14.5px; margin-bottom: 14px;">Personal Knowledge Card Details</h3>
+          <div style="display: flex; flex-direction: column; gap: 12px;">
+            <div>
+              <label style="font-size: 12px; color: var(--text-muted); display: block; margin-bottom: 4px;">Your Full Name:</label>
+              <input type="text" id="inputProfileName" class="fluent-input" placeholder="e.g. John Doe">
+            </div>
+            <div>
+              <label style="font-size: 12px; color: var(--text-muted); display: block; margin-bottom: 4px;">Profession & Role:</label>
+              <input type="text" id="inputProfileTitle" class="fluent-input" placeholder="e.g. Backend Developer & AI Engineer">
+            </div>
+            <div>
+              <label style="font-size: 12px; color: var(--text-muted); display: block; margin-bottom: 4px;">Preferred Communication Tone:</label>
+              <input type="text" id="inputProfileTone" class="fluent-input" placeholder="e.g. Casual Egyptian Arabic, direct, witty">
+            </div>
+            <div>
+              <label style="font-size: 12px; color: var(--text-muted); display: block; margin-bottom: 4px;">Private Phone Number (For Emergency Alerts):</label>
+              <input type="text" id="inputProfilePhone" class="fluent-input" placeholder="e.g. 201234567890">
+            </div>
+            <div>
+              <label style="font-size: 12px; color: var(--text-muted); display: block; margin-bottom: 4px;">Work Focus & Context:</label>
+              <textarea id="inputProfileWork" class="fluent-input" rows="3" placeholder="Summary of your ongoing projects and areas of expertise..."></textarea>
+            </div>
+            <div>
+              <label style="font-size: 12px; color: var(--text-muted); display: block; margin-bottom: 4px;">Strict Privacy & Guardrails:</label>
+              <textarea id="inputProfilePrivacy" class="fluent-input" rows="2" placeholder="Never disclose passwords, money promises, or make binding commitments."></textarea>
+            </div>
+          </div>
+          <button id="btnSaveProfile" class="fluent-btn primary" style="margin-top: 16px;" data-i18n="btn_save">Save Changes</button>
+        </div>
+      </div>
+
+      <!-- تبويب 3: الصوت -->
+      <div id="tab-voice" class="tab-content" style="display: none; max-width: 600px;">
+        <div class="fluent-card">
+          <h3 style="font-size: 15px; margin-bottom: 12px;">🎙️ Voice Note Personality (PTT)</h3>
+          <p style="color: var(--text-secondary); font-size: 13px; margin-bottom: 14px;">Select the human voice used when ExecuBot sends audio voice notes:</p>
+          
+          <div style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 18px;">
+            <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 13.5px;">
+              <input type="radio" name="voiceRadio" value="ar-EG-ShakirNeural" checked>
+              Shakir (Natural Egyptian Male Voice)
+            </label>
+            <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 13.5px;">
+              <input type="radio" name="voiceRadio" value="ar-EG-SalmaNeural">
+              Salma (Natural Egyptian Female Voice)
+            </label>
+            <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 13.5px;">
+              <input type="radio" name="voiceRadio" value="en-US-GuyNeural">
+              Guy (Natural English US Male Voice)
+            </label>
+          </div>
+
+          <button id="btnSaveVoice" class="fluent-btn primary" data-i18n="btn_save">Save Changes</button>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- نافذة معالج الإعداد لأول مرة (Onboarding Wizard Modal) -->
+  <div id="wizardModal" class="modal-overlay" style="display: none;">
+    <div class="modal-content">
+      <div class="wizard-steps">
+        <div class="wizard-step active" id="stepIndicator1">
+          <div class="step-num">1</div>
+          <span data-i18n="step_lang">Language</span>
+        </div>
+        <div class="wizard-step" id="stepIndicator2">
+          <div class="step-num">2</div>
+          <span data-i18n="step_keys">API Keys</span>
+        </div>
+        <div class="wizard-step" id="stepIndicator3">
+          <div class="step-num">3</div>
+          <span data-i18n="step_profile">Profile</span>
+        </div>
+      </div>
+
+      <h2 id="wizardStepTitle" style="font-size: 18px; margin-bottom: 6px;">Choose Your Preferred Language</h2>
+      <p id="wizardStepSubtitle" style="color: var(--text-secondary); font-size: 13px; margin-bottom: 20px;">
+        ExecuBot supports English and Arabic seamlessly.
+      </p>
+
+      <!-- Step 1: Language -->
+      <div id="wizardStep1" class="wizard-step-pane">
+        <div style="display: flex; gap: 16px; margin: 24px 0;">
+          <div class="fluent-card" id="cardChooseEn" style="flex: 1; cursor: pointer; text-align: center; border-color: var(--accent);">
+            <div style="font-size: 28px; margin-bottom: 8px;">🇬🇧</div>
+            <strong>English (Default)</strong>
+          </div>
+          <div class="fluent-card" id="cardChooseAr" style="flex: 1; cursor: pointer; text-align: center;">
+            <div style="font-size: 28px; margin-bottom: 8px;">🇪🇬</div>
+            <strong>العربية</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 2: Keys -->
+      <div id="wizardStep2" class="wizard-step-pane" style="display: none;">
+        <div style="display: flex; flex-direction: column; gap: 14px; margin-bottom: 20px;">
+          <div>
+            <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+              <label style="font-size: 12.5px;">Google Gemini API Key:</label>
+              <a href="https://aistudio.google.com/app/apikey" target="_blank" style="color: #60A5FA; font-size: 11px;">Get Free Key ↗</a>
+            </div>
+            <input type="password" id="wizardGeminiKey" class="fluent-input" placeholder="AIzaSy...">
+          </div>
+
+          <div>
+            <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+              <label style="font-size: 12.5px;">NVIDIA NIM API Key:</label>
+              <a href="https://build.nvidia.com/" target="_blank" style="color: #4ADE80; font-size: 11px;">Get Free 1,000 Credits ↗</a>
+            </div>
+            <input type="password" id="wizardNvidiaKey" class="fluent-input" placeholder="nvapi-...">
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 3: Profile -->
+      <div id="wizardStep3" class="wizard-step-pane" style="display: none;">
+        <div style="background: rgba(0, 120, 212, 0.08); padding: 12px; border-radius: var(--radius-md); margin-bottom: 14px;">
+          <p style="font-size: 12px; color: #60A5FA; margin-bottom: 6px;">💡 Instant Profile Setup:</p>
+          <button id="btnWizardCopyPrompt" class="chip-btn" style="background: var(--accent); color: white;">📋 Copy ChatGPT Interview Prompt</button>
+          <button id="btnWizardPasteJSON" class="chip-btn">📥 Paste Generated JSON</button>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px;">
+          <input type="text" id="wizardProfileName" class="fluent-input" placeholder="Your Name">
+          <input type="text" id="wizardProfileTitle" class="fluent-input" placeholder="Your Role (e.g. Backend Developer)">
+          <input type="text" id="wizardProfilePhone" class="fluent-input" placeholder="Emergency Escalation Phone (Optional)">
+        </div>
+      </div>
+
+      <div style="display: flex; justify-content: space-between; margin-top: 24px; border-top: 1px solid var(--border-subtle); padding-top: 16px;">
+        <button id="btnWizardBack" class="fluent-btn" style="display: none;">Back</button>
+        <button id="btnWizardNext" class="fluent-btn primary" style="margin-left: auto;">Next ➔</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
